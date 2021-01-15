@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG
+    uniqueID: 2360716965
+    locked: 0
+  - name: Decor
+    uniqueID: 2390682621
+    locked: 0
+  - name: Water
+    uniqueID: 3451780337
+    locked: 0
+  - name: Ground
+    uniqueID: 2531284099
+    locked: 0
+  - name: Player
+    uniqueID: 1314240151
+    locked: 0
