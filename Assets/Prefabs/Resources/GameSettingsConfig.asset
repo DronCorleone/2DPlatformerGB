@@ -15,4 +15,4 @@ MonoBehaviour:
   WalkSpeed: 3
   JumpStartSpeed: 8
   G: -10
-  AnimationSpeed: 10
+  AnimationSpeed: 21
