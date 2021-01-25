@@ -15,9 +15,9 @@ MonoBehaviour:
   WalkSpeed: 3
   JumpStartSpeed: 8
   G: -10
-  WalkSpeedRB: 150
-  JumpForse: 350
-  AnimationSpeed: 21
+  WalkSpeedRB: 300
+  JumpForse: 700
+  AnimationSpeed: 30
   BulletStartSpeed: 5
   FireInterval: 1
   BulletTimeLife: 3
