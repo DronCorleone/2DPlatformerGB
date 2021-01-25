@@ -9,6 +9,10 @@ public class GameSettings : ScriptableObject
     [SerializeField] public float JumpStartSpeed;
     [Range(-20f, 0f)] public float G;
 
+    [Header("Player movement rigidbody")]
+    [SerializeField] public float WalkSpeedRB;
+    [SerializeField] public float JumpForse;
+
     [Header("Animation")]
     [SerializeField] public float AnimationSpeed;
 
