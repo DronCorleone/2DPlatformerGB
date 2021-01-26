@@ -35,8 +35,8 @@ public class Main : MonoBehaviour
         _animator = new SpriteAnimator(_characterAnimationConfig);
         //_playerMoveController = new PlayerMoveController(_character, _animator, _gameSettingsConfig);
         _playerMoveControllerPhysics = new PlayerMoveControllerPhysics(_character, _animator, _gameSettingsConfig);
-        //_cannonAim = new CannonAimController(_cannon.MuzzleTransform, _character.transform);
-        //_bulletEmitterController = new BulletsEmitterController(_bullets, _cannon.BulletTransform, _gameSettingsConfig);
+        _cannonAim = new CannonAimController(_cannon.MuzzleTransform, _character.transform);
+        _bulletEmitterController = new BulletsEmitterController(_bullets, _cannon.BulletTransform, _gameSettingsConfig);
         _cameraController = new CameraController(_camera, _character.gameObject);
         
         
@@ -46,8 +46,8 @@ public class Main : MonoBehaviour
 
     private void Update()
     {
-        //_cannonAim.Update();
-        //_bulletEmitterController.Update();
+        _cannonAim.Update();
+        _bulletEmitterController.Update();
         _cameraController.Update();
     }
 

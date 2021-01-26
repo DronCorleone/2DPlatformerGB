@@ -18,7 +18,7 @@ public class BulletsEmitterController
 
         foreach (BulletView bulletView in bulletViews)
         {
-            _bullets.Add(new BulletMoveController(bulletView, settings));
+            _bullets.Add(new BulletMoveController(bulletView));
         }
     }
 
@@ -31,7 +31,7 @@ public class BulletsEmitterController
         else
         {
             _timeTillNextBullet = _settings.FireInterval;
-            _bullets[_currentIndex].Throw(_transform.position, _transform.up * _settings.BulletStartSpeed);
+            _bullets[_currentIndex].Throw(_transform, _transform.up * _settings.BulletStartSpeed);
             _currentIndex++;
 
             if (_currentIndex >= _bullets.Count)
@@ -39,7 +39,5 @@ public class BulletsEmitterController
                 _currentIndex = 0;
             }
         }
-
-        _bullets.ForEach(b => b.Update());
     }
 }

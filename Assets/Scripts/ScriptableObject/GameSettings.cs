@@ -19,5 +19,4 @@ public class GameSettings : ScriptableObject
     [Header("Cannon")]
     [SerializeField] public float BulletStartSpeed;
     [SerializeField] public float FireInterval;
-    [SerializeField] public float BulletTimeLife;
 }
