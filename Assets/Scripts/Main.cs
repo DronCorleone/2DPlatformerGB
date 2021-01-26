@@ -1,48 +1,55 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    [SerializeField]
-    private Camera _camera;
-    //[SerializeField]
-    //private SpriteRenderer _back;
-    //[SerializeField]
-    //private SomeView _someView;
-    //add links to test views <1>
-
-    //private SomeManager _someManager;
-    //add links to some logic managers <2>
+    [SerializeField] private Camera _camera;
+    
     private CharacterView _character;
+    private CannonView _cannon;
+    private List<BulletView> _bullets;
+
     private SpriteAnimator _animator;
+    private PlayerMoveController _playerMoveController;
+    private CannonAimController _cannonAim;
+    private BulletsEmitterController _bulletEmitterController;
+
     private SpriteAnimationsConfig _characterAnimationConfig;
+    private GameSettings _gameSettingsConfig;
 
 
     private void Start()
-    {
-        //SomeConfig config = Resources.Load("SomeConfig", typeof(SomeConfig))as   SomeConfig;
-        //load some configs here <3>
-        
+    {   
+        // Resources
         _characterAnimationConfig = Resources.Load<SpriteAnimationsConfig>(StringsManager.CharacterAnimationConfig);
+        _gameSettingsConfig = Resources.Load<GameSettings>(StringsManager.GameSettingsConfig);
+
+        // Objects on scene
         _character = FindObjectOfType<CharacterView>();
+        _cannon = FindObjectOfType<CannonView>();
+        _bullets = new List<BulletView>(FindObjectsOfType<BulletView>());
+
+        // Controllers
         _animator = new SpriteAnimator(_characterAnimationConfig);
-        //_someManager = new SomeManager(config);
-        //create some logic managers here for tests <4>
+        _playerMoveController = new PlayerMoveController(_character, _animator, _gameSettingsConfig);
+        _cannonAim = new CannonAimController(_cannon.MuzzleTransform, _character.transform);
+        _bulletEmitterController = new BulletsEmitterController(_bullets, _cannon.BulletTransform, _gameSettingsConfig);
+        
+        
+
         _animator.StartAnimation(_character.SpriteRenderer, CharacterState.Idle, true, 10f);
     }
 
     private void Update()
     {
-        //_someManager.Update();
-        //update logic managers here <5>
+        _cannonAim.Update();
+        _bulletEmitterController.Update();
     }
 
     private void FixedUpdate()
     {
-        //_someManager.FixedUpdate();
-        //update logic managers here <6>
         _animator.Update();
+        _playerMoveController.Update();
     }
 
     private void OnDestroy()
