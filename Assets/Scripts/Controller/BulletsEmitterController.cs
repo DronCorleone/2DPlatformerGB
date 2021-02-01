@@ -44,4 +44,9 @@ public class BulletsEmitterController
             }
         }
     }
+
+    public void Activate(bool state)
+    {
+        _isActive = state;
+    }
 }

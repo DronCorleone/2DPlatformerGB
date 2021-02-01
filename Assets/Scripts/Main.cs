@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Main : MonoBehaviour
     private CannonAimController _cannonAim;
     private BulletsEmitterController _bulletEmitterController;
     private CameraController _cameraController;
+    private UIController _uiController;
 
     private SpriteAnimationsConfig _characterAnimationConfig;
     private GameSettings _gameSettingsConfig;
@@ -38,10 +40,11 @@ public class Main : MonoBehaviour
         _cannonAim = new CannonAimController(_cannon.MuzzleTransform, _character.transform);
         _bulletEmitterController = new BulletsEmitterController(_bullets, _cannon.BulletTransform, _gameSettingsConfig);
         _cameraController = new CameraController(_camera, _character.gameObject);
-        
-        
+        _uiController = FindObjectOfType<UIController>();
 
         _animator.StartAnimation(_character.SpriteRenderer, CharacterState.Idle, true, 10f);
+
+        PauseGame();
     }
 
     private void Update()
@@ -68,4 +71,30 @@ public class Main : MonoBehaviour
         //dispose logic managers here <7>
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void StartGame()
+    {
+        Time.timeScale = 1;
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void EndGame(bool isComplete)
+    {
+        Time.timeScale = 0;
+        _uiController.EndGame(isComplete);
+    }
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
 }
