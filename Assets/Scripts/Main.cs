@@ -48,14 +48,18 @@ public class Main : MonoBehaviour
     {
         _cannonAim.Update();
         _bulletEmitterController.Update();
-        _cameraController.Update();
+        _animator.Update();
     }
 
     private void FixedUpdate()
     {
-        _animator.Update();
         //_playerMoveController.Update();
         _playerMoveControllerPhysics.FixedUpdate();
+        _cameraController.FixedUpdate();
+    }
+
+    private void LateUpdate()
+    {
     }
 
     private void OnDestroy()

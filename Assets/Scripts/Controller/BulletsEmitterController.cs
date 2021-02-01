@@ -11,6 +11,8 @@ public class BulletsEmitterController
     private int _currentIndex;
     private float _timeTillNextBullet;
 
+    private bool _isActive;
+
     public BulletsEmitterController(List<BulletView> bulletViews, Transform transform, GameSettings settings)
     {
         _settings = settings;
@@ -24,6 +26,8 @@ public class BulletsEmitterController
 
     public void Update()
     {
+        if (!_isActive) return;
+
         if (_timeTillNextBullet > 0)
         {
             _timeTillNextBullet -= Time.deltaTime;
