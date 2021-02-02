@@ -4,10 +4,6 @@ public class BulletView : MonoBehaviour
 {
     [SerializeField] private TrailRenderer _trail;
 
-    private void Start()
-    {
-        SetVisible(false);
-    }
 
     public void SetVisible(bool visible)
     {
@@ -21,6 +17,8 @@ public class BulletView : MonoBehaviour
             _trail.Clear();
         }
 
+
+        GetComponent<Rigidbody2D>().isKinematic = !visible;
         GetComponentInChildren<SpriteRenderer>().enabled = visible;
     }
 }
